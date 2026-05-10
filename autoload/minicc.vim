@@ -40,6 +40,7 @@ function! minicc#send_smart(line1, line2) abort
 endfunction
 
 function! minicc#send_line_prompt(text) abort
+  silent! write
   let ref = '@' . expand('%:p') . ':' . line('.')
   call minicc#send(ref . ' ' . a:text)
 endfunction
