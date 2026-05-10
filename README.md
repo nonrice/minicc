@@ -1,25 +1,21 @@
-# minicc.vim
+# MiniCC
+This is a minimal integration of Claude Code (CC) for Vim. It's only some simple communication between Vim/Claude via tmux. Obviously then, this only works when you are using CC and Vim in tmux panes.
 
-Minimal Vim integration for [Claude Code](https://claude.ai/code). Intended for a workflow where Vim and Claude Code run in separate tmux splits.
-
-## Requirements
-
-- tmux
-- Claude Code running in a tmux pane
+Fittingly, this plugin is also made by Claude Code :)
 
 ## Installation
 
+### vim-plug
 ```vim
-" vim-plug
-Plug '/path/to/minicc'
+Plug 'nonrice/minicc'
 ```
 
-## Configuration
+## Finding Claude 
 
 By default the plugin auto-detects the Claude pane by looking for a pane whose current command matches `claude`. To pin a specific pane manually:
 
 ```vim
-let g:minicc_pane = '%3'  " tmux pane ID
+let g:minicc_pane = '%3'
 ```
 
 ## Commands
@@ -28,22 +24,22 @@ let g:minicc_pane = '%3'  " tmux pane ID
 
 | Command | Description |
 |---|---|
-| `:MiniCC <text>` | Send `<text>` to Claude and press Enter |
-| `:MiniCCLine` | Type `@/path:line` reference for the current line (no Enter) |
-| `:MiniCCRange` | Type `@/path:line1-line2` reference for the selected range (no Enter) |
-| `:MiniCCSmart` | `:MiniCCLine` if no selection, `:MiniCCRange` otherwise |
-| `:MiniCCLinePrompt <text>` | Send current line reference + `<text>` and press Enter |
-| `:MiniCCRangePrompt <text>` | Send range reference + `<text>` and press Enter |
-| `:MiniCCSmartPrompt <text>` | Smart version of the above |
+| `:MiniCC <text>` | Send `<text>` as a prompt |
+| `:MiniCCLine` | Reference the current file and cursor line in the prompt |
+| `:MiniCCRange` | Reference the current file and selected line range in the prompt |
+| `:MiniCCSmart` | `:MiniCCLine` if no line selection, `:MiniCCRange` otherwise |
+| `:MiniCCLinePrompt <text>` | Send current line reference + `<text>` as a prompt |
+| `:MiniCCRangePrompt <text>` | Send range reference + `<text>` as a prompt |
+| `:MiniCCSmartPrompt <text>` | It's obvious |
 
-Line and range commands auto-save the current buffer before sending.
+Also, line and range commands auto-save the current buffer before sending.
 
 ### Buffer management
 
 | Command | Description |
 |---|---|
 | `:MiniCCReload` | Reload all file buffers from disk. Aborts if any buffer has unsaved changes. |
-| `:MiniCCCaptureRefs` | Reload buffers, then parse Claude's pane output and populate the quickfix list with one entry per changed hunk. Only captures edits from the most recent prompt. |
+| `:MiniCCCaptureRefs` | Reloads buffers, then adds the changes since the most recent prompt to quickfix |
 
 ### Pane control
 
@@ -52,8 +48,8 @@ Line and range commands auto-save the current buffer before sending.
 | `:MiniCCInterrupt` | Send `Ctrl-C` to the Claude pane |
 | `:MiniCCTarget` | Echo which tmux pane is being used |
 
-## Suggested keybindings
-
+## Keybinding example
+ 
 ```vim
 nnoremap <leader>cc :MiniCC<space>
 nnoremap <leader>cp :MiniCCSmartPrompt<space>

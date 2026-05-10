@@ -16,6 +16,14 @@
 !_TAG_KIND_DESCRIPTION!JSON	o,object	/objects/
 !_TAG_KIND_DESCRIPTION!JSON	s,string	/strings/
 !_TAG_KIND_DESCRIPTION!JSON	z,null	/nulls/
+!_TAG_KIND_DESCRIPTION!Markdown	S,subsection	/level 2 sections/
+!_TAG_KIND_DESCRIPTION!Markdown	T,l4subsection	/level 4 sections/
+!_TAG_KIND_DESCRIPTION!Markdown	c,chapter	/chapters/
+!_TAG_KIND_DESCRIPTION!Markdown	h,hashtag	/hashtags/
+!_TAG_KIND_DESCRIPTION!Markdown	n,footnote	/footnotes/
+!_TAG_KIND_DESCRIPTION!Markdown	s,section	/sections/
+!_TAG_KIND_DESCRIPTION!Markdown	t,subsubsection	/level 3 sections/
+!_TAG_KIND_DESCRIPTION!Markdown	u,l5subsection	/level 5 sections/
 !_TAG_KIND_DESCRIPTION!Vim	C,constant	/constant definitions/
 !_TAG_KIND_DESCRIPTION!Vim	a,augroup	/autocommand groups/
 !_TAG_KIND_DESCRIPTION!Vim	c,command	/user-defined commands/
@@ -29,6 +37,7 @@
 !_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
 !_TAG_OUTPUT_VERSION	1.1	/current.age/
 !_TAG_PARSER_VERSION!JSON	0.0	/current.age/
+!_TAG_PARSER_VERSION!Markdown	1.1	/current.age/
 !_TAG_PARSER_VERSION!Vim	1.1	/current.age/
 !_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
 !_TAG_PROC_CWD	/Users/eric/Workspace/minicc/	//
@@ -39,9 +48,15 @@
 0	.claude/settings.local.json	/^      "Bash(git init *)",$/;"	s	array:permissions.allow
 1	.claude/settings.local.json	/^      "Bash(git add *)",$/;"	s	array:permissions.allow
 2	.claude/settings.local.json	/^      "Bash(git commit *)"$/;"	s	array:permissions.allow
+Buffer management	README.md	/^### Buffer management$/;"	S	section:MiniCC""Commands
+Commands	README.md	/^## Commands$/;"	s	chapter:MiniCC
+Finding Claude	README.md	/^## Finding Claude $/;"	s	chapter:MiniCC
+Installation	README.md	/^## Installation$/;"	s	chapter:MiniCC
+Keybinding example	README.md	/^## Keybinding example$/;"	s	chapter:MiniCC
+MiniCC	README.md	/^# MiniCC$/;"	c
 MiniCC	plugin/minicc.vim	/^command! -nargs=+ MiniCC       call minicc#send(<q-args>)$/;"	c
 MiniCCCaptureRefs	plugin/minicc.vim	/^command! -nargs=0 MiniCCCaptureRefs call minicc#capture_refs()$/;"	c
-MiniCCDump	plugin/minicc.vim	/^command! -nargs=0 MiniCCDump       call minicc#dump_capture()$/;"	c
+MiniCCInterrupt	plugin/minicc.vim	/^command! -nargs=0 MiniCCInterrupt  call minicc#interrupt()$/;"	c
 MiniCCLine	plugin/minicc.vim	/^command! -nargs=0 MiniCCLine   call minicc#send_line()$/;"	c
 MiniCCLinePrompt	plugin/minicc.vim	/^command! -nargs=+ MiniCCLinePrompt  call minicc#send_line_prompt(<q-args>)$/;"	c
 MiniCCRange	plugin/minicc.vim	/^command! -nargs=0 -range MiniCCRange  call minicc#send_range(<line1>, <line2>)$/;"	c
@@ -50,11 +65,13 @@ MiniCCReload	plugin/minicc.vim	/^command! -nargs=0 MiniCCReload      call minicc
 MiniCCSmart	plugin/minicc.vim	/^command! -nargs=0 -range MiniCCSmart call minicc#send_smart(<line1>, <line2>)$/;"	c
 MiniCCSmartPrompt	plugin/minicc.vim	/^command! -nargs=+ -range MiniCCSmartPrompt call minicc#send_smart_prompt(<line1>, <line2>, <q-ar/;"	c
 MiniCCTarget	plugin/minicc.vim	/^command! -nargs=0 MiniCCTarget       call minicc#target()$/;"	c
+Pane control	README.md	/^### Pane control$/;"	S	section:MiniCC""Commands
+Sending prompts	README.md	/^### Sending prompts$/;"	S	section:MiniCC""Commands
 allow	.claude/settings.local.json	/^    "allow": [$/;"	a	object:permissions
 g:loaded_minicc	plugin/minicc.vim	/^let g:loaded_minicc = 1$/;"	v
 g:minicc_pane	plugin/minicc.vim	/^  let g:minicc_pane = ''$/;"	v
 minicc#capture_refs	autoload/minicc.vim	/^function! minicc#capture_refs() abort$/;"	f
-minicc#dump_capture	autoload/minicc.vim	/^function! minicc#dump_capture() abort$/;"	f
+minicc#interrupt	autoload/minicc.vim	/^function! minicc#interrupt() abort$/;"	f
 minicc#reload_all	autoload/minicc.vim	/^function! minicc#reload_all() abort$/;"	f
 minicc#send	autoload/minicc.vim	/^function! minicc#send(text) abort$/;"	f
 minicc#send_line	autoload/minicc.vim	/^function! minicc#send_line() abort$/;"	f
@@ -64,7 +81,15 @@ minicc#send_range_prompt	autoload/minicc.vim	/^function! minicc#send_range_promp
 minicc#send_smart	autoload/minicc.vim	/^function! minicc#send_smart(line1, line2) abort$/;"	f
 minicc#send_smart_prompt	autoload/minicc.vim	/^function! minicc#send_smart_prompt(line1, line2, text) abort$/;"	f
 minicc#target	autoload/minicc.vim	/^function! minicc#target() abort$/;"	f
+minicc#tmux#find_pane	autoload/minicc/tmux.vim	/^function! minicc#tmux#find_pane() abort$/;"	f
+minicc#tmux#focus	autoload/minicc/tmux.vim	/^function! minicc#tmux#focus(pane_id) abort$/;"	f
+minicc#tmux#resolve_pane	autoload/minicc/tmux.vim	/^function! minicc#tmux#resolve_pane() abort$/;"	f
+minicc#tmux#send	autoload/minicc/tmux.vim	/^function! minicc#tmux#send(pane_id, text) abort$/;"	f
+minicc#tmux#type	autoload/minicc/tmux.vim	/^function! minicc#tmux#type(pane_id, text) abort$/;"	f
 minicc#type	autoload/minicc.vim	/^function! minicc#type(text) abort$/;"	f
 permissions	.claude/settings.local.json	/^  "permissions": {$/;"	o
+s:pane_id	autoload/minicc/tmux.vim	/^let s:pane_id = ''$/;"	v
 s:save_cpo	autoload/minicc.vim	/^let s:save_cpo = &cpo$/;"	v
+s:save_cpo	autoload/minicc/tmux.vim	/^let s:save_cpo = &cpo$/;"	v
 s:save_cpo	plugin/minicc.vim	/^let s:save_cpo = &cpo$/;"	v
+vim-plug	README.md	/^### vim-plug$/;"	S	section:MiniCC""Installation
