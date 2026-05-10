@@ -25,14 +25,10 @@ let g:minicc_pane = '%3'
 | Command | Description |
 |---|---|
 | `:MiniCC <text>` | Send `<text>` as a prompt |
-| `:MiniCCLine` | Reference the current file and cursor line in the prompt |
-| `:MiniCCRange` | Reference the current file and selected line range in the prompt |
-| `:MiniCCSmart` | `:MiniCCLine` if no line selection, `:MiniCCRange` otherwise |
-| `:MiniCCLinePrompt <text>` | Send current line reference + `<text>` as a prompt |
-| `:MiniCCRangePrompt <text>` | Send range reference + `<text>` as a prompt |
-| `:MiniCCSmartPrompt <text>` | It's obvious |
+| `:MiniCCRef` | Type a `@/path:line` reference for the current line or selected range (no Enter) |
+| `:MiniCCRefPrompt <text>` | Send current line/range reference + `<text>` as a prompt |
 
-Also, line and range commands auto-save the current buffer before sending.
+Ref commands auto-save the current buffer before sending.
 
 ### Buffer management
 
@@ -45,15 +41,13 @@ Also, line and range commands auto-save the current buffer before sending.
 
 | Command | Description |
 |---|---|
-| `:MiniCCInterrupt` | Send `Ctrl-C` to the Claude pane |
 | `:MiniCCTarget` | Echo which tmux pane is being used |
 
 ## Keybinding example
  
 ```vim
 nnoremap <leader>cc :MiniCC<space>
-nnoremap <leader>cp :MiniCCSmartPrompt<space>
-vnoremap <leader>cp :MiniCCSmartPrompt<space>
+nnoremap <leader>cp :MiniCCRefPrompt<space>
+vnoremap <leader>cp :MiniCCRefPrompt<space>
 nnoremap <leader>cr :MiniCCCaptureRefs<CR>
-nnoremap <leader>ci :MiniCCInterrupt<CR>
 ```
