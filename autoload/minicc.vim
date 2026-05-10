@@ -136,9 +136,7 @@ function! minicc#capture_refs() abort
   endfor
 
   call setqflist([], 'r', {'title': 'Claude edits', 'items': entries})
-  if !empty(entries)
-    copen
-  else
+  if empty(entries)
     echom 'minicc: no Claude edits found after last prompt'
   endif
 endfunction
