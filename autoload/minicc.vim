@@ -114,6 +114,13 @@ function! minicc#capture_refs() abort
       let in_hunk = 0
       continue
     endif
+    let path = matchstr(line, 'Write(\zs[^)]\+\ze)')
+    if path !=# ''
+      let abs = (path =~# '^/') ? path : pane_cwd . '/' . path
+      call add(entries, {'filename': abs, 'lnum': 1, 'text': 'Claude write'})
+      let cur_file = ''
+      continue
+    endif
     if cur_file !=# ''
       let diff_match = matchlist(line, '\(\d\+\)\s\+[│ ]*+')
       if !empty(diff_match)
