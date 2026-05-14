@@ -12,7 +12,7 @@ Plug 'nonrice/minicc'
 
 ## Finding Claude 
 
-By default the plugin auto-detects the Claude pane by looking for a pane whose current command matches `claude`. To pin a specific pane manually:
+By default the plugin auto-detects the Claude pane by looking for a pane whose current command contains `claude` (case-insensitive). To pin a specific pane manually:
 
 ```vim
 let g:minicc_pane = '%3'

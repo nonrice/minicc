@@ -14,7 +14,7 @@ function! minicc#tmux#find_pane() abort
 
   let lines = systemlist('tmux list-panes -a -F "#{pane_id} #{pane_current_command}"')
   for line in lines
-    if line =~# '\<claude\>'
+    if line =~? 'claude'
       let s:pane_id = split(line)[0]
       return s:pane_id
     endif
@@ -48,4 +48,3 @@ endfunction
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
-
